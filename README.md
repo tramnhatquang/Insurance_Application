@@ -24,6 +24,6 @@ The insurance application is a website portal for customers, employees, and mana
 
 ## UML:
 ![UML](https://github.com/tramnhatquang/Insurance_Application/blob/main/Insurance%20App.png)
-![Flow_Chart](https://github.com/tramnhatquang/Insurance_Application/blob/main/Flow%20Chart.png)
+![Flow_Chart]()
 ## Demo (Google Drive): 
 Updated soon
