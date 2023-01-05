@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<style>
+	table {
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	td {
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+	}
+
+	th {
+		border: 1px solid #dddddd;
+		background-color: #c0c0c0;
+		text-align: left;
+		padding: 8px;
+	}
+
+	div.ex1 {
+		width: 500px;
+		margin: auto;
+		border: 3px solid #73AD21;
+	}
+
+	div.ex2 {
+		max-width: 500px;
+		margin: auto;
+		border: 3px solid #73AD21;
+	}
+</style>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>ABC Insurance Home Page</title>
+	<script
+			src="https://code.jquery.com/jquery-2.2.4.min.js"
+			integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+			crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../js/welcome.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="text-right">
+
+
+		<div class="text-center">
+			<div class="container" style="margin-left:100px">
+				<h1>Welcome to Your Healthcare Plans</h1>
+				<h2>Search your desired plan</h2>
+			</div>
+		</div>
+		<div class="container border rounded" style="margin:auto;padding:50px;margin-top:50px;margin-bottom:50px">
+			<div align="center">
+				<h3>Please enter the details below to search</h3><br></div>
+			<div class="form-row">
+				</div>
+				<div class="col-2">
+					Primary member's Age<input type="number" class="form-control" id="ageP" />
+				</div>
+				<div class="col">
+					No. of people in your family<select id="noPeople" type="number" class="form-control"
+														onchange="myFunction()">
+					<option value=1>1</option>
+					<option value=2>2</option>
+					<option value=3>3</option>
+					<option value=4>4</option>
+					<option value=5>5</option>
+					<option value=6>6</option>
+				</select>
+				</div>
+				<div class="col">
+					<table id="dependentTable">
+					</table>
+				</div>
+				<div><input class="btn-sm btn-primary" type="button" id="searchPlans"
+							value="Show Available Plans with Quotes" /></div>
+				</br>
+
+			</div>
+			<div><input class="btn-clear" type="button" id="clearSearch" value="Clear" /></div>
+			<div class="container border rounded" style="margin:auto;padding:50px;margin-top:50px;margin-bottom:50px">
+				<div align="center">
+					<div class="col-7 border rounded" style="margin-left:50px;">
+						<div style='text-align:center;font-size:20px;font-family:"Trebuchet MS", Helvetica, sans-serif'>
+							List of Plans with Quotes:
+						</div>
+					</div>
+					<div id="listPlan">
+						<table border='1' id='availablePlans'>
+							<tr class='header'>
+								<th>Plan ID</th>
+								<th>Plan Name</th>
+								<th>Deductible</th>
+								<th>Max Out of pocket</th>
+								<th>Premium</th>
+								<th>Benefits</th>
+								<th>Click below to buy</th>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal" id="benefitsModal">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title"></h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body" id="benefitsModal_modalBody">
+							<div>
+								<input type="hidden" id="benefitsModal_planName" />
+							</div>
+							<div>
+								<table border='1' id='benefitsTable'>
+									<tr class='headr'>
+										<th>Benefit Name</th>
+										<th>Description</th>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal" id="policyDetailsModal">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Enter the details below to buy a policy</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body" id="policyDetailsModal_modalBody">
+						<div class="col" align="left">
+							Primary Member's details:</br>
+							<input class="form-control" type="number" id="modal_planId" />
+							<input class="form-control" type="text" id="modal_planName" />
+							First Name: <input class="form-control" type="text" id="modal_primaryMembFName" />
+							Last Name: <input class="form-control" type="text" id="modal_primaryMembLName" />
+							Gender: <select id="modal_primaryMembGender" input class="form-control" type="text">
+							<option value='Male'>Male</option>
+							<option value='Female'>Female</option>
+						</select>
+							Date of Birth: <input class="form-control" type="date" id="modal_primaryMembDoB" />
+							Email Id: <input class="form-control" type="text" id="modal_primaryMembEmailId" />
+							Phone #: <input class="form-control" type="text" id="modal_primaryPhoneNo" />
+							<div class="form-row">
+								<div class="col-3">
+									Address: <input class="form-control" type="text" id="modal_primaryMembAddress" />
+								</div>
+								<div class="col-2">
+									City: <input class="form-control" type="text" id="modal_primaryMembCity" />
+								</div>
+								<div class="col-1">
+									State: <input class="form-control" type="text" id="modal_primaryMembState" />
+								</div>
+								<div class="col">
+									ZipCode: <input class="form-control" type="text" id="modal_primaryMembZipCode" />
+								</div>
+							</div>
+
+							No. of people in your family<select id="modal_noPeople" type="number" class="form-control"
+																onchange="dependentDetails1()">
+							<option value=1>1</option>
+							<option value=2>2</option>
+							<option value=3>3</option>
+							<option value=4>4</option>
+							<option value=5>5</option>
+							<option value=6>6</option>
+						</select>
+						</div>
+						<br><br>
+						<div class="col" align="left">
+							Enter other family member's Details below:
+							<table id="dependentDetailsTable">
+								<tr class='header'>
+									<th>Dependent's First Name</th>
+									<th>Dependent's Last Name</th>
+									<th>Gender</th>
+									<th>DOB</th>
+									<th>RelationToPrimaryMember</th>
+								</tr>
+							</table>
+							<br><br>
+							Premium :<input readonly="true" class="form-control" type="number" id="modal_premium" />
+							<div align="center"><input class="btn-sm btn-primary" type="button "
+													   id="btn-applyAndGeneratePolicy" value="Pay & Generate Policy" />
+							</div>
+						</div>
+					</div>
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+		function myFunction() {
+			var noPeople = document.getElementById("noPeople").value;
+			$("#dependentTable tr").remove();
+			for (let i = 2; i <= noPeople; i++) {
+				$("#dependentTable").append("<tr><td>Age of person" + i + "<input type='text' class='bAge' id='bAge'></td></tr>");
+			}
+		}
+
+		function dependentDetails1() {
+			var noPeople1 = document.getElementById("modal_noPeople").value;
+			$("#dependentDetailsTable tr").not('.header').remove();
+			for (let i = 2; i <= noPeople1; i++) {
+				$("#dependentDetailsTable").append("<tr><td><input type='text' class='firstName' id='firstName'></td><td><input type='text' class='lastName' id='lastName'></td><td><input type='text' class='gender' id='gender'></td><td><input type='date' class='dob' id='dob'></td><td><input type='text' class='relationToPrimaryMember' id='relationToPrimaryMember'></td></tr>");
+			}
+		}
+
+	</script>
+</body>
+</html>

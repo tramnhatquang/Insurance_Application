@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="./js/policy.js"></script>
+	<meta charset="ISO-8859-1">
+	<title>Policy/Claim List Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="../css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<a href="/home" type="button" class="btn btn-link" id="homePage">Back to Main page</a>
+	<div class="container" style="margin-left:100px">
+		<p></p>
+		<h3 id="listName" th:text="${logIn}" />
+		<br>
+		<br>
+	</div>
+	<div>
+
+		<table class="table" id="listTable" style="width:80%; margin: auto;">
+			<thead id="tableHead">
+			</thead>
+			<tbody id="tableBody">
+			</tbody>
+		</table>
+	</div>
+	<div class="modal" id="claimModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title" id="claimTitle"></h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body" id="reason_modalBody">
+					Claimee: <select class="form-control" id="select_claimee" style="margin-bottom:10px;"></select>
+					Hospital Name: <input class="form-control" type="text" id="modal_hospName"
+										  style="margin-bottom:10px;" required="true" />
+					Description: <input class="form-control" type="text" id="modal_description"
+										style="margin-bottom:20px;" required="true" />
+
+					<button class="button-xsmall pure-button button-" id="addRowBtn"
+							style="border-radius: 4px;margin-bottom:10px;border: 1px solid gray;">Add row
+					</button>
+					<br>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Reason</th>
+								<th scope="col">Expense($)</th>
+							</tr>
+						</thead>
+						<tbody id="rsnBody">
+						</tbody>
+					</table>
+					<br>
+				</div>
+
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="rsnSubmit">Submit</button>
+					&ensp;
+					<button type="button" class="btn btn-danger" data-dismiss="modal" id="rsnClose">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="fileModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title" id="proofTitle"></h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body" id="reason_modalBody">
+					<form id="file-upload-form">
+						<input type="file" id="file-upload-input" name="file" /><br><br>
+						<span class="upload_List"></span><br><br>
+						<button type="submit" style="border-radius: 4px;margin-bottom:10px;border: 1px solid gray;">
+							Upload file
+						</button>
+					</form>
+					</form>
+				</div>
+
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal" id="fileClose">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="viewModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">View Proof Files</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body" id="reason_modalBody">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">File Name</th>
+								<th scope="col">View</th>
+							</tr>
+						</thead>
+						<tbody id="fileBody">
+						</tbody>
+					</table>
+				</div>
+
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal" id="fileClose">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
